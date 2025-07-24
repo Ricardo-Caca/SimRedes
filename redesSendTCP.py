@@ -12,7 +12,7 @@ print(f"Conectado ao servidor em {ip_servidor}:{porta}")
 
 # mensagem = {"nome": "Ricardo", "mensagem": "Ola servidor via TCP!"}
 
-mensagem = np.array([["-0.52", "0.63", "0.0"],[0.30000000000000004, 0.030000000000000027, 0.0]], dtype=np.float32)
+mensagem = np.array([[-0.52, 0.63, 0.0],[0.30000000000000004, 0.030000000000000027, 0.0]], dtype=np.float32)
 dados = json.dumps(mensagem.tolist()).encode()
 
 sock.sendall(dados)
