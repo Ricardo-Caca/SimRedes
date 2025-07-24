@@ -94,12 +94,12 @@ def key_callback(window, key, scancode, action, mods):
             
             dados = np.array([pontos1, pontos], dtype=np.float32)
             
-
-            # 
+            funcoes.fisica()
+            funcoes.enlace()
+            funcoes.rede()
+            funcoes.transporte()
             funcoes.aplicação(dados)
-            funcoes.fisica(dados)
-
-
+            
         else:
             print("")
             print("=========|-----------|---- FALHA NA TRASMISSÃO ----|-----------|=========")
@@ -135,10 +135,12 @@ def mouse_button_callback(window, button, action, mods):
         if len(vertices)%2 == 0:
             global pontos1
             dados = np.array([pontos1, pontos], dtype=np.float32)
-            print(dados)
-            #O PROTOCOLO DE ENVIAR TEM Q PRINTAR AQUI 
-            #NAO PENSEI EM CHECKSUM AQ
-            #MAS USE OS DADOS REAIS NA APLICAÇÃO PELO MENOS, SO PEGAR ESSA VARIAVEL dados
+            
+            funcoes.aplicação(dados)
+            funcoes.transporte()
+            funcoes.rede()
+            funcoes.enlace()
+            funcoes.fisica()
             
             vertices = np.loadtxt("pontos.txt", dtype=np.float32)
             # print("QUANTIDADE DE BYTES - ",vertices.nbytes)
