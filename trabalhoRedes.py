@@ -30,10 +30,6 @@ dadosbrutos = [0.002, 0.03]
 
 def simulaRede():
   
-   
-   estabeleceConexao()
-   print("")
-   print("")
    aplicação()
    print("")
    print("")
@@ -142,17 +138,4 @@ def remTransporte():
    pass
 
 def mensagem():
-   pass
-
-# simulaRede()
-
-def menu_pricipal():
-   # print("Simulador de redes")
-   print("🔹 Bem-vindo ao Simulador Educacional para o modelo TCP/IP 🌐")
-   print("Carregando sistema de vendas...")
-
-   print("\nProdutos disponíveis:")
-   print("1. Mouse Gamer - R$ 99,90")
-   print("2. Teclado Mecânico - R$ 199,90")
-   print("3. Monitor 24'' - R$ 799,90")
-menu_pricipal()
+   print("piru")
