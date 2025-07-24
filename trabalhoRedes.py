@@ -14,10 +14,10 @@ macdestino = "5c:cd:5b:2e:10:3d"
 iporigem = socket.gethostbyname_ex(socket.gethostname())[-1][1]
 ipdestino = "192.168.0.1"
 
-print("Mac Origem", macorigem)
-print("IP Origem", iporigem)
-print("Mac Destino", macdestino)
-print("IP Destino", ipdestino)
+# print("Mac Origem", macorigem)
+# print("IP Origem", iporigem)
+# print("Mac Destino", macdestino)
+# print("IP Destino", ipdestino)
 portaorigem = 80
 portadestino = random.randint(1000, 8000)
 
@@ -145,3 +145,14 @@ def mensagem():
    pass
 
 # simulaRede()
+
+def menu_pricipal():
+   # print("Simulador de redes")
+   print("🔹 Bem-vindo ao Simulador Educacional para o modelo TCP/IP 🌐")
+   print("Carregando sistema de vendas...")
+
+   print("\nProdutos disponíveis:")
+   print("1. Mouse Gamer - R$ 99,90")
+   print("2. Teclado Mecânico - R$ 199,90")
+   print("3. Monitor 24'' - R$ 799,90")
+menu_pricipal()
