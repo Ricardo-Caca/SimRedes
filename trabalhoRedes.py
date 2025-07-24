@@ -144,4 +144,4 @@ def remTransporte():
 def mensagem():
    pass
 
-simulaRede()
+# simulaRede()
