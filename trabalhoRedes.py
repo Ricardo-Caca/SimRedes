@@ -11,7 +11,7 @@ def get_mac_address():
 
 macorigem = get_mac_address()
 macdestino = "5c:cd:5b:2e:10:3d"
-iporigem = socket.gethostbyname_ex(socket.gethostname())[-1][0]
+iporigem = socket.gethostbyname_ex(socket.gethostname())[-1][1]
 ipdestino = "192.168.0.1"
 
 print("Mac Origem", macorigem)
@@ -30,10 +30,6 @@ dadosbrutos = [0.002, 0.03]
 
 def simulaRede():
   
-   
-   estabeleceConexao()
-   print("")
-   print("")
    aplicação()
    print("")
    print("")
@@ -142,6 +138,4 @@ def remTransporte():
    pass
 
 def mensagem():
-   pass
-
-simulaRede()
+   print("piru")
