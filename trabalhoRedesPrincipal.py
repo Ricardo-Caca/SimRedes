@@ -73,7 +73,7 @@ def key_callback(window, key, scancode, action, mods):
             x = np.random.uniform(-1, 1)
             y = np.random.uniform(-1, 1)
             pontos = np.array([[x, y, 0.0]], dtype=np.float32)
-            pontos1
+            pontos1 = pontos
             array = np.loadtxt("pontos.txt", dtype=np.float32)
             pontos_atualizados = np.vstack([array, pontos])
             np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
@@ -92,7 +92,13 @@ def key_callback(window, key, scancode, action, mods):
             gl.glBufferData(gl.GL_ARRAY_BUFFER, vertices.nbytes, vertices, gl.GL_STATIC_DRAW)
             
             dados = np.array([pontos1, pontos], dtype=np.float32)
+            
+            funcoes.fisica()
+            funcoes.enlace()
+            funcoes.rede()
+            funcoes.transporte()
             funcoes.aplicação(dados)
+            
         else:
             print("")
             print("=========|-----------|---- FALHA NA TRASMISSÃO ----|-----------|=========")
@@ -128,10 +134,12 @@ def mouse_button_callback(window, button, action, mods):
         if len(vertices)%2 == 0:
             global pontos1
             dados = np.array([pontos1, pontos], dtype=np.float32)
-            print(dados)
-            #O PROTOCOLO DE ENVIAR TEM Q PRINTAR AQUI 
-            #NAO PENSEI EM CHECKSUM AQ
-            #MAS USE OS DADOS REAIS NA APLICAÇÃO PELO MENOS, SO PEGAR ESSA VARIAVEL dados
+            
+            funcoes.aplicação(dados)
+            funcoes.transporte()
+            funcoes.rede()
+            funcoes.enlace()
+            funcoes.fisica()
             
             vertices = np.loadtxt("pontos.txt", dtype=np.float32)
             # print("QUANTIDADE DE BYTES - ",vertices.nbytes)

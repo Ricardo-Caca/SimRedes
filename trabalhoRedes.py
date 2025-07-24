@@ -117,17 +117,7 @@ def enlace():
    print(f"Tipo (EtherType):   0x0800  (IPv4)")
    print("==========================================")
    
-
 def fisica():
-   pass
-
-def remEnlace():
-   pass
-
-def remRede():
-   pass
-
-def remTransporte():
    pass
 
 def mensagem():
