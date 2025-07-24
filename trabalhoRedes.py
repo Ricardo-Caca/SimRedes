@@ -2,6 +2,7 @@ import uuid
 import socket
 import os
 import random
+import struct 
 
 def get_mac_address():
     mac = uuid.getnode()
@@ -14,10 +15,6 @@ macdestino = "5c:cd:5b:2e:10:3d"
 iporigem = socket.gethostbyname_ex(socket.gethostname())[-1][1]
 ipdestino = "192.168.0.1"
 
-print("Mac Origem", macorigem)
-print("IP Origem", iporigem)
-print("Mac Destino", macdestino)
-print("IP Destino", ipdestino)
 portaorigem = 80
 portadestino = random.randint(1000, 8000)
 
@@ -34,6 +31,10 @@ def checksum():
 
 def estabeleceConexao():
    print("=========|-----------|---- ESTABELECENDO CONEXÃO ----|-----------|=========")
+   print("Mac Origem", macorigem)
+   print("IP Origem", iporigem)
+   print("Mac Destino", macdestino)
+   print("IP Destino", ipdestino)
    print("========= Cabeçalho TRANSPORTE - SYN (Cliente → Servidor) =========")
    print(f"Porta de Origem:       {portaorigem}")
    print(f"Porta de Destino:      {portadestino}")
@@ -74,11 +75,10 @@ def estabeleceConexao():
    
 
 def aplicação(dadosbrutos):
-   print("|-----------|---- APLICAÇÃO ----|-----------|")
-   print("DADOS BRUTOS: ", dadosbrutos)
-   print("|-----------|-------------------|-----------|")
+    print("|-----------|---- APLICAÇÃO ----|-----------|")
+    print(f"DADOS BRUTOS:{dadosbrutos}") 
+    print("|-----------|-------------------|-----------|")
    
-
 def transporte():
    print("========= Cabeçalho TRANSPORTE =========")
    print(f"Porta de Origem:       {portaorigem}")
@@ -118,17 +118,13 @@ def enlace():
    print("==========================================")
    
 
-def fisica():
-   pass
-
-def remEnlace():
-   pass
-
-def remRede():
-   pass
-
-def remTransporte():
-   pass
-
-def mensagem():
-   print("piru")
+def fisica(dadosbrutos):
+    print("=========== CAMADA FÍSICA ===========")
+    print("CONVERTENDO PRA BINÁRIO")
+    dadosTratados = []
+    for i in dadosbrutos.flatten():
+        dadosTratados.append(i)
+    for i in dadosTratados:
+        bits = struct.pack('!f', i)
+        print(i, '→' ,''.join(f'{b:08b}' for b in bits))
+    print("|-----------|-------------------|-----------|")

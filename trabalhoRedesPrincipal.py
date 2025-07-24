@@ -6,6 +6,7 @@ import time  # Para detectar duplo clique
 import trabalhoRedes as funcoes
 
 
+
 # Código do shader de vértice
 VERTEX_SHADER_SRC = """
 #version 330 core
@@ -73,7 +74,7 @@ def key_callback(window, key, scancode, action, mods):
             x = np.random.uniform(-1, 1)
             y = np.random.uniform(-1, 1)
             pontos = np.array([[x, y, 0.0]], dtype=np.float32)
-            pontos1
+            pontos1 = pontos
             array = np.loadtxt("pontos.txt", dtype=np.float32)
             pontos_atualizados = np.vstack([array, pontos])
             np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
@@ -92,7 +93,13 @@ def key_callback(window, key, scancode, action, mods):
             gl.glBufferData(gl.GL_ARRAY_BUFFER, vertices.nbytes, vertices, gl.GL_STATIC_DRAW)
             
             dados = np.array([pontos1, pontos], dtype=np.float32)
+            
+
+            # 
             funcoes.aplicação(dados)
+            funcoes.fisica(dados)
+
+
         else:
             print("")
             print("=========|-----------|---- FALHA NA TRASMISSÃO ----|-----------|=========")
