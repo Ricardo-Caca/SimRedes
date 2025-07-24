@@ -4,6 +4,7 @@ import numpy as np
 from OpenGL.GL.shaders import compileProgram, compileShader
 import time  # Para detectar duplo clique
 
+
 # Código do shader de vértice
 VERTEX_SHADER_SRC = """
 #version 330 core
@@ -30,7 +31,7 @@ void main() {
     FragColor = vec4(0.0, 1.0, 0.0, 1.0);  // Verde
 }
 """
-
+        
 def create_shader_program(vertex_src, fragment_src):
     """Compila e retorna um programa de shader OpenGL."""
     shader = compileProgram(
@@ -62,6 +63,36 @@ def create_object(vertices):
 click_positions = []
 last_click_time = 0
 
+def key_callback(window, key, scancode, action, mods):
+    if key == glfw.KEY_P and action == glfw.RELEASE:
+        
+        #if(checksum = true):
+        #O PROTOCOLO DE RECEBER TEM Q PRINTAR AQUI 
+        #pois se o checksum falhar ele não vai traçar a linha
+        #else: print("calango GAY")
+        
+        x = np.random.uniform(-1, 1)
+        y = np.random.uniform(-1, 1)
+        pontos = np.array([[x, y, 0.0]], dtype=np.float32)
+
+        array = np.loadtxt("pontos.txt", dtype=np.float32)
+        pontos_atualizados = np.vstack([array, pontos])
+        np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
+        
+        x = np.random.uniform(-1, 1)
+        y = np.random.uniform(-1, 1)
+        pontos = np.array([[x, y, 0.0]], dtype=np.float32)
+
+        array = np.loadtxt("pontos.txt", dtype=np.float32)
+        pontos_atualizados = np.vstack([array, pontos])
+        np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
+        
+        vertices = np.loadtxt("pontos.txt", dtype=np.float32)
+        # Atualiza os dados do VBOk
+        gl.glBindBuffer(gl.GL_ARRAY_BUFFER, VBO_line)
+        gl.glBufferData(gl.GL_ARRAY_BUFFER, vertices.nbytes, vertices, gl.GL_STATIC_DRAW)
+        
+        
 def mouse_button_callback(window, button, action, mods):
     global last_click_time, click_positions, VBO_line
 
@@ -83,20 +114,27 @@ def mouse_button_callback(window, button, action, mods):
         np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
         vertices = np.loadtxt("pontos.txt", dtype=np.float32)
         
-        print("ARRAY DO ARQUIVO - ", vertices)
-        print("LENGHT DO ARQUIVO - ", len(vertices))
-        print("ARRAY DO ARRAY",click_positions)
-        print("LENGHT DO ARRAY - ", len(click_positions))
+        # print("ARRAY DO ARQUIVO - ", vertices)
+        # print("LENGHT DO ARQUIVO - ", len(vertices))
+        # print("ARRAY DO ARRAY",click_positions)
+        # print("LENGHT DO ARRAY - ", len(click_positions))
+        
         # Se houver dois cliques, cria a linha
         if len(vertices)%2 == 0:
+            global pontos1
+            dados = np.array([pontos1, pontos], dtype=np.float32)
+            print(dados)
+            #O PROTOCOLO DE ENVIAR TEM Q PRINTAR AQUI 
+            #NAO PENSEI EM CHECKSUM AQ
+            #MAS USE OS DADOS REAIS NA APLICAÇÃO PELO MENOS, SO PEGAR ESSA VARIAVEL dados
+            
             vertices = np.loadtxt("pontos.txt", dtype=np.float32)
-            print("QUANTIDADE DE BYTES - ",vertices.nbytes)
+            # print("QUANTIDADE DE BYTES - ",vertices.nbytes)
             # Atualiza os dados do VBOk
             gl.glBindBuffer(gl.GL_ARRAY_BUFFER, VBO_line)
             gl.glBufferData(gl.GL_ARRAY_BUFFER, vertices.nbytes, vertices, gl.GL_STATIC_DRAW)
-
             #click_positions = []  # Reseta para nova linha
-            
+        pontos1 = pontos #gambiarra
         # Atualiza o tempo do último clique
         last_click_time = current_time
 
@@ -127,7 +165,7 @@ def main():
 
     # Registra a função de callback para capturar cliques do mouse
     glfw.set_mouse_button_callback(window, mouse_button_callback)
-
+    glfw.set_key_callback(window, key_callback)
     # Compila os programas de shader
     shader_triangle = create_shader_program(VERTEX_SHADER_SRC, FRAGMENT_SHADER_TRIANGLE_SRC)
     shader_line = create_shader_program(VERTEX_SHADER_SRC, FRAGMENT_SHADER_LINE_SRC)
@@ -144,7 +182,7 @@ def main():
     line_vertices = np.array([
         array
     ], dtype=np.float32)
-    print("DADOS INICIAIS - ", line_vertices)
+    #print("DADOS INICIAIS - ", line_vertices)
     # Criação dos objetos
     VAO_triangle, _ = create_object(triangle_vertices)
     VAO_line, VBO_line = create_object(line_vertices)  # Guarda o VBO da linha para atualizar depois
