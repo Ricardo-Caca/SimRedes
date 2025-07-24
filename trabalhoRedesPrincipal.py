@@ -68,37 +68,36 @@ funcoes.estabeleceConexao()
 def key_callback(window, key, scancode, action, mods):
     if key == glfw.KEY_P and action == glfw.RELEASE:
         
-        #if(checksum = true):
-        #O PROTOCOLO DE RECEBER TEM Q PRINTAR AQUI 
+        if(funcoes.checksum() == False):
+        
+            x = np.random.uniform(-1, 1)
+            y = np.random.uniform(-1, 1)
+            pontos = np.array([[x, y, 0.0]], dtype=np.float32)
+            pontos1
+            array = np.loadtxt("pontos.txt", dtype=np.float32)
+            pontos_atualizados = np.vstack([array, pontos])
+            np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
+            
+            x = np.random.uniform(-1, 1)
+            y = np.random.uniform(-1, 1)
+            pontos = np.array([[x, y, 0.0]], dtype=np.float32)
 
-        funcoes.simulaRede()
-        
-
-        #pois se o checksum falhar ele não vai traçar a linha
-        #else: print("calango GAY")
-        
-        x = np.random.uniform(-1, 1)
-        y = np.random.uniform(-1, 1)
-        pontos = np.array([[x, y, 0.0]], dtype=np.float32)
-
-        array = np.loadtxt("pontos.txt", dtype=np.float32)
-        pontos_atualizados = np.vstack([array, pontos])
-        np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
-        
-        x = np.random.uniform(-1, 1)
-        y = np.random.uniform(-1, 1)
-        pontos = np.array([[x, y, 0.0]], dtype=np.float32)
-
-        array = np.loadtxt("pontos.txt", dtype=np.float32)
-        pontos_atualizados = np.vstack([array, pontos])
-        np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
-        
-        vertices = np.loadtxt("pontos.txt", dtype=np.float32)
-        # Atualiza os dados do VBOk
-        gl.glBindBuffer(gl.GL_ARRAY_BUFFER, VBO_line)
-        gl.glBufferData(gl.GL_ARRAY_BUFFER, vertices.nbytes, vertices, gl.GL_STATIC_DRAW)
-        
-        
+            array = np.loadtxt("pontos.txt", dtype=np.float32)
+            pontos_atualizados = np.vstack([array, pontos])
+            np.savetxt("pontos.txt", pontos_atualizados, fmt='%f')
+            
+            vertices = np.loadtxt("pontos.txt", dtype=np.float32)
+            # Atualiza os dados do VBOk
+            gl.glBindBuffer(gl.GL_ARRAY_BUFFER, VBO_line)
+            gl.glBufferData(gl.GL_ARRAY_BUFFER, vertices.nbytes, vertices, gl.GL_STATIC_DRAW)
+            
+            dados = np.array([pontos1, pontos], dtype=np.float32)
+            funcoes.aplicação(dados)
+        else:
+            print("")
+            print("=========|-----------|---- FALHA NA TRASMISSÃO ----|-----------|=========")
+            print("")
+            
 def mouse_button_callback(window, button, action, mods):
     global last_click_time, click_positions, VBO_line
 

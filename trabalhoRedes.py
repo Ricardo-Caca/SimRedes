@@ -26,19 +26,11 @@ seq_servidor = random.randint(0, 100000)
    
 dadosbrutos = [0.002, 0.03]
 
-
-
-def simulaRede():
-  
-   aplicação()
-   print("")
-   print("")
-   transporte()
-   print("")
-   rede()
-   print("")
-   print("")
-   pass
+def checksum():
+   checksum = random.randint(0, 100)
+   if(checksum == 10):
+      return True
+   return False
 
 def estabeleceConexao():
    print("=========|-----------|---- ESTABELECENDO CONEXÃO ----|-----------|=========")
@@ -79,12 +71,13 @@ def estabeleceConexao():
    print("=============================================================\n")
    
    print("=========|-----------|---- CONEXÃO ESTABELECIDA ----|-----------|=========")
-   pass
-def aplicação():
+   
+
+def aplicação(dadosbrutos):
    print("|-----------|---- APLICAÇÃO ----|-----------|")
    print("DADOS BRUTOS: ", dadosbrutos)
    print("|-----------|-------------------|-----------|")
-   pass
+   
 
 def transporte():
    print("========= Cabeçalho TRANSPORTE =========")
@@ -98,7 +91,7 @@ def transporte():
    print(f"Checksum:              {hex(random.randint(0, 0xFFFF))}")
    print(f"Ponteiro Urgente:      {0}")
    print("===============================================================\n")
-   pass
+   
 
 def rede():
    print("=========== Cabeçalho IPv4 ===========")
@@ -115,7 +108,7 @@ def rede():
    print(f"Endereço IP de Origem:   {iporigem}")
    print(f"Endereço IP de Destino:  {ipdestino}")
    print("================================================")
-   pass
+   
 
 def enlace():
    print("=========== Cabeçalho ENLACE ===========")
@@ -123,7 +116,7 @@ def enlace():
    print(f"MAC de Origem:      {macorigem}")
    print(f"Tipo (EtherType):   0x0800  (IPv4)")
    print("==========================================")
-   pass
+   
 
 def fisica():
    pass
