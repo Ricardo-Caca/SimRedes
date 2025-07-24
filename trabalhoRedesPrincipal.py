@@ -94,7 +94,7 @@ def key_callback(window, key, scancode, action, mods):
             
             dados = np.array([pontos1, pontos], dtype=np.float32)
             
-            funcoes.fisica()
+            funcoes.fisica(dados)
             funcoes.enlace()
             funcoes.rede()
             funcoes.transporte()
@@ -140,7 +140,7 @@ def mouse_button_callback(window, button, action, mods):
             funcoes.transporte()
             funcoes.rede()
             funcoes.enlace()
-            funcoes.fisica()
+            funcoes.fisica(dados)
             
             vertices = np.loadtxt("pontos.txt", dtype=np.float32)
             # print("QUANTIDADE DE BYTES - ",vertices.nbytes)
