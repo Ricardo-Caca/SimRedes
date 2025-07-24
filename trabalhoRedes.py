@@ -1,6 +1,5 @@
 import uuid
 import socket
-import os
 import random
 import struct 
 
@@ -21,8 +20,6 @@ portadestino = random.randint(1000, 8000)
 seq_cliente = random.randint(0, 100000)
 seq_servidor = random.randint(0, 100000)
    
-dadosbrutos = [0.002, 0.03]
-
 def checksum():
    checksum = random.randint(0, 100)
    if(checksum == 10):
@@ -71,13 +68,13 @@ def estabeleceConexao():
    print(f"Ponteiro Urgente:      {0}")
    print("=============================================================\n")
    
-   print("=========|-----------|---- CONEXÃO ESTABELECIDA ----|-----------|=========")
+   print("=========|-----------|---- CONEXÃO ESTABELECIDA ----|-----------|=========\n")
    
 
 def aplicação(dadosbrutos):
     print("|-----------|---- APLICAÇÃO ----|-----------|")
     print(f"DADOS BRUTOS:{dadosbrutos}") 
-    print("|-----------|-------------------|-----------|")
+    print("|-----------|-------------------|-----------|\n")
    
 def transporte():
    print("========= Cabeçalho TRANSPORTE =========")
@@ -94,7 +91,7 @@ def transporte():
    
 
 def rede():
-   print("=========== Cabeçalho IPv4 ===========")
+   print("=========== Cabeçalho REDE IP ===========")
    print(f"Versão:                  {4}")
    print(f"IHL:                     {5} (20 bytes)")
    print(f"TOS:                     {0}")
@@ -107,7 +104,7 @@ def rede():
    print(f"Checksum:                0x{random.randint(0, 0xFFFF):04x}")
    print(f"Endereço IP de Origem:   {iporigem}")
    print(f"Endereço IP de Destino:  {ipdestino}")
-   print("================================================")
+   print("================================================\n")
    
 
 def enlace():
@@ -115,7 +112,7 @@ def enlace():
    print(f"MAC de Destino:     {macdestino}")
    print(f"MAC de Origem:      {macorigem}")
    print(f"Tipo (EtherType):   0x0800  (IPv4)")
-   print("==========================================")
+   print("==========================================\n")
    
 
 def fisica(dadosbrutos):
@@ -124,7 +121,8 @@ def fisica(dadosbrutos):
     dadosTratados = []
     for i in dadosbrutos.flatten():
         dadosTratados.append(i)
+
     for i in dadosTratados:
         bits = struct.pack('!f', i)
         print(i, '→' ,''.join(f'{b:08b}' for b in bits))
-    print("|-----------|-------------------|-----------|")
+    print("|-----------|-------------------|-----------|\n")
