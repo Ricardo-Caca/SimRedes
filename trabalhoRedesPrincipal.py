@@ -70,9 +70,8 @@ def key_callback(window, key, scancode, action, mods):
         
         #if(checksum = true):
         #O PROTOCOLO DE RECEBER TEM Q PRINTAR AQUI 
-
-        funcoes.simulaRede()
-        
+        # Quando Aperta P
+        funcoes.aplicação()
 
         #pois se o checksum falhar ele não vai traçar a linha
         #else: print("calango GAY")
