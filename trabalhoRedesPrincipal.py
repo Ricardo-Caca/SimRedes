@@ -3,6 +3,7 @@ import OpenGL.GL as gl
 import numpy as np
 from OpenGL.GL.shaders import compileProgram, compileShader
 import time  # Para detectar duplo clique
+import trabalhoRedes as funcoes
 
 
 # Código do shader de vértice
@@ -63,11 +64,16 @@ def create_object(vertices):
 click_positions = []
 last_click_time = 0
 
+funcoes.estabeleceConexao()
 def key_callback(window, key, scancode, action, mods):
     if key == glfw.KEY_P and action == glfw.RELEASE:
         
         #if(checksum = true):
         #O PROTOCOLO DE RECEBER TEM Q PRINTAR AQUI 
+
+        funcoes.simulaRede()
+        
+
         #pois se o checksum falhar ele não vai traçar a linha
         #else: print("calango GAY")
         
@@ -182,6 +188,8 @@ def main():
     line_vertices = np.array([
         array
     ], dtype=np.float32)
+
+   #  funcoes.estabeleceConexao()
     #print("DADOS INICIAIS - ", line_vertices)
     # Criação dos objetos
     VAO_triangle, _ = create_object(triangle_vertices)

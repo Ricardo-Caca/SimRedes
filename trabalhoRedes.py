@@ -30,10 +30,6 @@ dadosbrutos = [0.002, 0.03]
 
 def simulaRede():
   
-   
-   estabeleceConexao()
-   print("")
-   print("")
    aplicação()
    print("")
    print("")
@@ -142,6 +138,4 @@ def remTransporte():
    pass
 
 def mensagem():
-   pass
-
-# simulaRede()
+   print("piru")
