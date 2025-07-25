@@ -94,11 +94,11 @@ def key_callback(window, key, scancode, action, mods):
             
             dados = np.array([pontos1, pontos], dtype=np.float32)
             
-            funcoes.fisica(dados)
-            funcoes.enlace()
-            funcoes.rede()
-            funcoes.transporte()
-            funcoes.aplicação(dados)
+            funcoes.desencapsulamento(dados)
+            funcoes.rem_enlace()
+            funcoes.rem_rede()
+            funcoes.rem_transporte(dados)
+
             
         else:
             print("")
@@ -136,12 +136,13 @@ def mouse_button_callback(window, button, action, mods):
             global pontos1
             dados = np.array([pontos1, pontos], dtype=np.float32)
             
+            funcoes.encapsulamento()
             funcoes.aplicação(dados)
-            funcoes.transporte()
-            funcoes.rede()
-            funcoes.enlace()
-            funcoes.fisica(dados)
-            
+            segmento = funcoes.transporte()
+            pacote = funcoes.rede(segmento)
+            quadro = funcoes.enlace(pacote)
+            funcoes.fisica(dados, quadro)
+
             vertices = np.loadtxt("pontos.txt", dtype=np.float32)
             # print("QUANTIDADE DE BYTES - ",vertices.nbytes)
             # Atualiza os dados do VBOk
