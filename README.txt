@@ -14,5 +14,5 @@ O Projeto é sobre um simulador fictício de desenho, onde a comunicação é du
 com o protocolo TCP/IP.
 
 ------ COMO USAR ------
-Clique P para simular o recebimento de dados.
+Clique P para simular o recebimento de dados (com o foco na tela do openGL).
 Clique em 2 pontos da janela para simular o envio de dados.
